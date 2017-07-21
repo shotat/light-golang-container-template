@@ -1,9 +1,15 @@
 package main
 
 import (
-	"fmt"
+	log "github.com/sirupsen/logrus"
+	"net/http"
 )
 
+func handler(w http.ResponseWriter, r *http.Request) {
+	log.Info("Hello")
+}
+
 func main() {
-	fmt.Println("hello")
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":8080", nil)
 }
